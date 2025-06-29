@@ -32,7 +32,7 @@ A **progressive, offline-first notes application** built with **React, IndexedDB
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/your-username/smart-notes-app.git
+git clone https://github.com/mohit071/smart-notes-app.git
 cd smart-notes-app
 ```
 
