@@ -1,54 +1,71 @@
-# React + TypeScript + Vite
+# 📝 Smart Notes App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A **progressive, offline-first notes application** built with **React, IndexedDB, and Firebase**. This app enables users to create, edit, delete, and sync notes seamlessly across offline and online states.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔧 Tech Stack
 
-## Expanding the ESLint configuration
+| Layer         | Technology                    |
+| ------------- | ----------------------------- |
+| Frontend      | React + TypeScript            |
+| Local Storage | IndexedDB (via `idb` package) |
+| Cloud Sync    | Firebase Firestore            |
+| Styling       | CSS / Tailwind (optional)     |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 🚀 Features
+
+- ✅ Create and edit text notes
+- ✅ Tag notes with keywords
+- ✅ Store notes offline (IndexedDB)
+- ✅ Auto-sync unsynced notes when back online
+- ✅ Delete notes (syncs to Firebase)
+- ✅ Notes sorted by newest
+- ✅ Clean, responsive UI
+
+---
+
+## 📦 Getting Started
+
+### 1. Clone the Repo
+
+```bash
+git clone https://github.com/your-username/smart-notes-app.git
+cd smart-notes-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+pnpm install
 ```
+
+### 3. Set Up Firebase
+
+- Go to Firebase Console
+- Create a new project
+- Enable Cloud Firestore
+- Create a collection named notes
+- Replace the Firebase config in firebase.ts
+
+### 4. Scripts
+
+```bash
+pnpm dev       # Start development server
+pnpm build     # Build for production
+pnpm preview   # Preview production build
+```
+
+### 5. Architecture Overview
+
+- Notes are stored in IndexedDB first for instant offline-first behavior.
+
+- If online:
+  Notes are immediately synced to Firebase Firestore.
+
+- If offline:
+  - Notes are flagged synced: false and stored locally.
+  - When network connectivity resumes:
+    - Unsynced notes (create/update/delete) are synced automatically to Firestore.
