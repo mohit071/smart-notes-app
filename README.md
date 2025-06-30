@@ -11,7 +11,7 @@ A **progressive, offline-first notes application** built with **React, IndexedDB
 | Frontend      | React + TypeScript            |
 | Local Storage | IndexedDB (via `idb` package) |
 | Cloud Sync    | Firebase Firestore            |
-| Styling       | CSS / Tailwind (optional)     |
+| Styling       | via `chakraUI` components     |
 
 ---
 
